@@ -9,9 +9,12 @@ namespace incHub.Data
         {
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<UserSkill> UserSkills { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<ProjectRole> ProjectRole { get; set; }
+        public DbSet<Role> Rols { get; set; }
         public DbSet<UserContactDetail> UserContactDetails { get; set; }
-        public DbSet<Skill> UserSkills { get; set; }
+        public DbSet<Skill> Skills { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
