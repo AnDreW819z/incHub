@@ -13,14 +13,16 @@ namespace incHub.Controllers
     {
         private readonly IProjectRepository _projectRepository;
         private readonly IUserRepository _userRepository;
+        private readonly IRoleRepository _roleRepository;
         private readonly IMapper _mapper;
 
         public ProjectController(IProjectRepository projectRepository,
-            IMapper mapper, IUserRepository userRepository)
+            IMapper mapper, IUserRepository userRepository, IRoleRepository roleRepository)
         {
             _projectRepository = projectRepository;
             _userRepository = userRepository;
             _mapper = mapper;
+            _roleRepository = roleRepository;
         }
 
         [HttpGet]
@@ -81,7 +83,7 @@ namespace incHub.Controllers
 
             projectMap.User = _userRepository.GetUser(userId);
 
-            if (!_projectRepository.CreateProject(projectMap))
+            if (!_projectRepository.CreateProject(userId,projectMap))
             {
                 ModelState.AddModelError("", "Something went wrong while savin");
                 return StatusCode(500, ModelState);

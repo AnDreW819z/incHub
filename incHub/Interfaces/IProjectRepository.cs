@@ -9,7 +9,7 @@ namespace incHub.Interfaces
         Project GetProject(int userId);
         User GetUserOfProject(int projectId);
         bool ProjectExists(int projectId);
-        bool CreateProject(Project project);
+        bool CreateProject(int userId, Project project);
         bool UpdateProject(Project project);
         bool DeleteProject(Project project);
         bool Save();

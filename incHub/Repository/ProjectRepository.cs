@@ -14,9 +14,11 @@ namespace incHub.Repository
             _context = context;
         }
 
-        public bool CreateProject(Project project)
+        public bool CreateProject(int userId, Project project)
         {
+            var UserEntity = _context.Users.Where(p => p.Id == userId).FirstOrDefault();
             _context.Add(project);
+            _context.Add(userId);
             return Save();
         }
 
