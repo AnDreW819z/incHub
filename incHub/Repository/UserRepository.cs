@@ -43,7 +43,7 @@ namespace incHub.Repository
 
         public ICollection<Skill> GetSkillByUser(int userId)
         {
-            return _context.UserSkills.Where(p => p.User.Id == userId).Select(p => p.Skill).ToList();
+            return _context.UserSkills.Where(p => p.Skill.Id == skillId).Select(p => p.User).ToList();
         }
 
         public bool UserExists(int userId)
