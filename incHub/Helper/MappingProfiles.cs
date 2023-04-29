@@ -14,6 +14,8 @@ namespace incHub.Helper
             CreateMap<SkillDto, Skill>();
             CreateMap<Project, ProjectDto>();
             CreateMap<ProjectDto, Project>();
+            CreateMap<Role, RoleDto>();
+            CreateMap<RoleDto, Role>();
         }
     }
 }
