@@ -20,7 +20,7 @@ namespace incHub.Repository
             return Save();
         }
 
-        public bool DeleteOwner(User user)
+        public bool DeleteUser(User user)
         {
             _context.Remove(user);
             return Save();
@@ -31,9 +31,9 @@ namespace incHub.Repository
             return _context.Users.Where(o => o.Id == userId).FirstOrDefault();
         }
 
-        public ICollection<User> GetUserOfProject(int projectId)
+        public ICollection<Project> GetUserOfProjects (int userId)
         {
-            return _context.Projects.Where(p => p.User.Id == projectId).Select(o => o.User).ToList();
+            return _context.Projects.Where(p => p.User.Id == userId).ToList();
         }
 
         public ICollection<User> GetUsers()
@@ -41,9 +41,10 @@ namespace incHub.Repository
             return _context.Users.ToList();
         }
 
-        public ICollection<User> GetUserBySkill(int skillId)
+        public ICollection<Skill> GetSkillByUser(int userId)
         {
-            return _context.UserSkills.Where(p => p.Skill.Id == skillId).Select(p => p.User).ToList();
+
+            I
         }
 
         public bool UserExists(int userId)
