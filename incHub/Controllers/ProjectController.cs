@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using incHub.Dto;
 using incHub.Interfaces;
 using incHub.Models;
+using incHub.Repository;
 
 namespace incHub.Controllers
 {
@@ -11,12 +12,14 @@ namespace incHub.Controllers
     public class ProjectController : Controller
     {
         private readonly IProjectRepository _projectRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
         public ProjectController(IProjectRepository projectRepository,
-            IMapper mapper)
+            IMapper mapper, IUserRepository userRepository)
         {
             _projectRepository = projectRepository;
+            _userRepository = userRepository;
             _mapper = mapper;
         }
 
@@ -56,7 +59,7 @@ namespace incHub.Controllers
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreateProject( [FromBody] ProjectDto projectCreate)
+        public IActionResult CreateProject( [FromQuery] int userId,[FromBody] ProjectDto projectCreate)
         {
             if (projectCreate == null)
                 return BadRequest(ModelState);
@@ -75,6 +78,8 @@ namespace incHub.Controllers
                 return BadRequest(ModelState);
 
             var projectMap = _mapper.Map<Project>(projectCreate);
+
+            projectMap.User = _userRepository.GetUser(userId);
 
             if (!_projectRepository.CreateProject(projectMap))
             {
