@@ -31,7 +31,7 @@ namespace incHub.Repository
             return _context.Users.Where(o => o.Id == userId).FirstOrDefault();
         }
 
-        public ICollection<Project> GetUserOfProjects (int userId)
+        public ICollection<Project> GetProjectOfUser(int userId)
         {
             return _context.Projects.Where(p => p.User.Id == userId).ToList();
         }
@@ -43,8 +43,7 @@ namespace incHub.Repository
 
         public ICollection<Skill> GetSkillByUser(int userId)
         {
-
-            I
+            return _context.UserSkills.Where(p => p.Skill.Id == skillId).Select(p => p.User).ToList();
         }
 
         public bool UserExists(int userId)

@@ -7,7 +7,7 @@ namespace incHub.Interfaces
     {
         ICollection<User> GetUsers();
         User GetUser(int userId);
-        ICollection<Project> GetUserOfProjects(int userId);
+        ICollection<Project> GetProjectOfUser(int projectId);
         ICollection<Skill> GetSkillByUser(int skillId);
         bool UserExists(int userId);
         bool CreateUser(User user);
