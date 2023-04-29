@@ -6,8 +6,6 @@
         public string Description { get; set; }
         public string Task { get; set; }
         public ProjectStatus Status { get; set; }
-        
-        public DateTime DateTimeActualProject { get; set; }
         public virtual User User { get; set; }
         public ProjectType Type { get; set; }
         public ICollection<ProjectRole> ProjectRols { get; set; }
